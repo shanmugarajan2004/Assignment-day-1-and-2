@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, temp;
+    float avg, sum=0;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    printf("Enter the elements of the array:\n");
+    for(int i=0; i<n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+   
+    for(int i=0; i<n; i++) {
+        for(int j=i+1; j<n; j++) {
+            if(arr[i] < arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    
+    int secondLargest = arr[1];
+    int smallest = arr[n-1];
+    for(int i=0; i<n; i++) {
+        sum += arr[i];
+        if(arr[i] < smallest) {
+            smallest = arr[i];
+        }
+        if(arr[i] > secondLargest && arr[i] != arr[0]) {
+            secondLargest = arr[i];
+        }
+    }
+    avg = (secondLargest + smallest)/2.0;
+
+   
+    int found = 0;
+    for(int i=0; i<n; i++) {
+        if(arr[i] == avg) {
+            found = 1;
+            break;
+        }
+    }
+
+  
+    printf("Sorted array in descending order: ");
+    for(int i=0; i<n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\nSecond largest element: %d\n", secondLargest);
+    printf("Smallest element: %d\n", smallest);
+    printf("Average of second largest and smallest elements: %.2f\n", avg);
+    if(found) {
+        printf("Average is present in the array\n");
+    } else {
+        printf("Average is not present in the array\n");
+    }
+
+    return 0;
+}
