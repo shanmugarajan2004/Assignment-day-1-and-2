@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {1, 2, 4, 5, 4, 2, 7, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int index = 0;
+
+    for (int i = 0; i < size; i++) {
+        int j;
+        for (j = 0; j < i; j++) {
+            if (arr[i] == arr[j]) {
+                break;
+            }
+        }
+        if (j == i) {
+            arr[index++] = arr[i];
+        }
+    }
+
+    printf("Resultant Array after removing duplicates: ");
+    for (int i = 0; i < index; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
